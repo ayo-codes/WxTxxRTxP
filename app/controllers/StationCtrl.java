@@ -14,4 +14,13 @@ public class StationCtrl extends Controller
         Logger.info ("Station id = " + id);
         render("stations.html", station);
     }
+
+    public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection , float pressure)
+    {
+        Reading reading = new Reading(code, temperature, windSpeed,windDirection , pressure);
+        Station station = Station.findById(id);
+        station.readings.add(reading);
+        station.save();
+        redirect ("/station/" + id);
+    }
 }
