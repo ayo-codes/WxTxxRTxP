@@ -34,3 +34,12 @@ Station(dunmore):
  readings:
   - r3
   - r4
+
+Member(m1):
+  firstname: Homer
+  lastname: Simpson
+  email: homer@simpson.com
+  password: secret
+  stations:
+  - tramore
+  - dunmore

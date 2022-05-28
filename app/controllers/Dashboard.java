@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Station;
 import models.Reading;
+import models.Member;
 import play.Logger;
 import play.mvc.Controller;
 
@@ -30,15 +31,18 @@ public class Dashboard extends Controller
     Logger.info("Rendering Dashboard");
     Logger.error("something fishy going down");
     Logger.debug("Praise God , the next step happened");
-    List <Station> stations = Station.findAll();
+    Member member = Accounts.getLoggedInMember();
+    List <Station> stations = member.stations;
     render ("dashboard.html" , stations);
   }
 
   public static void addStation (String stationName)
   {
-    Station station  = new Station (stationName);
     Logger.info ("Adding a new station called " + stationName);
-    station.save();
+    Member member = Accounts.getLoggedInMember();
+    Station station  = new Station (stationName);
+    member.stations.add(station);
+    member.save();
     redirect ("/dashboard");
   }
 }
