@@ -5,6 +5,7 @@ import models.Station;
 import models.Reading;
 import play.Logger;
 import play.mvc.Controller;
+import utils.StationAnalytics;
 
 public class StationCtrl extends Controller
 {
@@ -12,7 +13,8 @@ public class StationCtrl extends Controller
     {
         Station station = Station.findById(id);
         Logger.info ("Station id = " + id);
-        render("stations.html", station);
+        Reading latestReading = StationAnalytics.getLatestReading(station.readings);
+        render("stations.html", station, latestReading);
     }
 
     public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection , float pressure)
