@@ -6,6 +6,7 @@
 GET     /                                       Start.index
 GET     /dashboard                              Dashboard.index
 GET     /about                                  About.index
+GET     /station/{id}                         StationCtrl.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -15,3 +16,6 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+
+# Extra routes
+
