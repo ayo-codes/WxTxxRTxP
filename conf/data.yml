@@ -25,12 +25,16 @@ Reading(r4):
 
 Station(tramore):
  stationName: Tramore
+ stationLatitude: 52.1623500
+ stationLongitude: -7.1524400
  readings:
   - r1
   - r2
 
 Station(dunmore):
  stationName: Dunmore
+ stationLatitude: 52.1499994
+ stationLongitude: -6.9833294
  readings:
   - r3
   - r4
