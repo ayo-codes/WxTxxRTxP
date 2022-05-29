@@ -7,17 +7,15 @@ import play.Logger;
 import play.mvc.Controller;
 import utils.StationAnalytics;
 
-public class StationCtrl extends Controller
-{
+public class StationCtrl extends Controller {
 
-    public static void index(Long id)
-    {
+    public static void index(Long id) {
         Station station = Station.findById(id);
-        Logger.info ("Station id = " + id);
+        Logger.info("Station id = " + id);
 
         Reading latestReading = StationAnalytics.getLatestReading(station.readings);
         latestReading.fah = Reading.celsiusToFah(latestReading.temperature);
-        latestReading.weatherCondition =Reading.getWeatherCondition(latestReading.code);
+        latestReading.weatherCondition = Reading.getWeatherCondition(latestReading.code);
         latestReading.windInBeaufort = Reading.windSpeedToBeaufort(latestReading.windSpeed);
         latestReading.compassWindDirection = Reading.convertToCompassDirection(latestReading.windDirection);
         latestReading.windChill = Reading.windChill(latestReading.temperature, latestReading.windSpeed);
@@ -27,23 +25,21 @@ public class StationCtrl extends Controller
         station.minWindSpeed = Station.getMinWindSpeed(station);
         station.minPressure = Station.getMinPressure(station);
         station.maxPressure = Station.getMaxPressure(station);
-        render("stations.html", station ,latestReading);
+        render("stations.html", station, latestReading);
     }
 
-    public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection , float pressure)
-    {
-        Reading reading = new Reading(code, temperature, windSpeed,windDirection , pressure);
+    public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection, float pressure) {
+        Reading reading = new Reading(code, temperature, windSpeed, windDirection, pressure);
         Station station = Station.findById(id);
         station.readings.add(reading);
         station.save();
-        redirect ("/station/" + id);
+        redirect("/station/" + id);
     }
 
-    public static void deleteReading (Long id, Long readingid)
-    {
+    public static void deleteReading(Long id, Long readingid) {
         Station station = Station.findById(id);
         Reading reading = Reading.findById(readingid);
-        Logger.info ("Removing " + reading.code);
+        Logger.info("Removing " + reading.code);
         station.readings.remove(reading);
         station.save();
         reading.delete();

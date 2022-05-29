@@ -2,15 +2,15 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import models.Station;
 import models.Reading;
 import models.Member;
 import play.Logger;
 import play.mvc.Controller;
 
-public class Dashboard extends Controller
-{
-  public static void index() {
+public class Dashboard extends Controller {
+    public static void index() {
     /*
      Reading r1 = new Reading(800, 0.5f,3.5f,220,1001);
     Reading r2 = new Reading(600, 6.0f,2.0f,200,1004);
@@ -28,21 +28,30 @@ public class Dashboard extends Controller
     */
 
 
-    Logger.info("Rendering Dashboard");
-    Logger.error("something fishy going down");
-    Logger.debug("Praise God , the next step happened");
-    Member member = Accounts.getLoggedInMember();
-    List <Station> stations = member.stations;
-    render ("dashboard.html" , stations);
-  }
+        Logger.info("Rendering Dashboard");
+        Logger.error("something fishy going down");
+        Logger.debug("Praise God , the next step happened");
+        Member member = Accounts.getLoggedInMember();
+        List<Station> stations = member.stations;
+        render("dashboard.html", stations);
+    }
 
-  public static void addStation (String stationName , double stationLatitude , double stationLongitude)
-  {
-    Logger.info ("Adding a new station called " + stationName);
-    Member member = Accounts.getLoggedInMember();
-    Station station  = new Station (stationName , stationLatitude , stationLongitude);
-    member.stations.add(station);
-    member.save();
-    redirect ("/dashboard");
-  }
+    public static void addStation(String stationName, double stationLatitude, double stationLongitude) {
+        Logger.info("Adding a new station called " + stationName);
+        Member member = Accounts.getLoggedInMember();
+        Station station = new Station(stationName, stationLatitude, stationLongitude);
+        member.stations.add(station);
+        member.save();
+        redirect("/dashboard");
+    }
+
+    public static void deleteStation(Long id) {
+        Member member = Accounts.getLoggedInMember();
+        Station station = Station.findById(id);
+        member.stations.remove(station);
+        member.save();
+        Logger.info("Removing" + station.stationName);
+        station.delete();
+        redirect("/dashboard");
+    }
 }
