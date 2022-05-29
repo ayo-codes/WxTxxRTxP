@@ -8,7 +8,9 @@
         <div class="card">
             <div class="extra">
                 <h2 class="ui header">
-                    <span class="ui blue text">${station.stationName}</span>
+
+                    <span class="ui blue text">${station.stationName}</span> <br>
+                    <span class="ui big red text" > <i class="marker icon"></i> </span><br>
                 </h2>
                 <h4 class="ui header"> Longitude : ${station.stationLongitude}
                     <br> Latitude : ${station.stationLatitude} </h4>
@@ -17,14 +19,16 @@
         <div class="card ">
             <div class="extra">
                 <h2 class="ui header">
-                <span class="ui  blue text">  Latest Weather Conditions</span></h2>
-                <h3 class="ui header"> ${latestReading?.weatherCondition} </h3>
+                <span class="ui  blue text">  Weather </span><br>
+                    <span class="ui big red text" > <i class="cloud sun rain icon"></i> </span></h2>
+                <h2 class="ui header"> ${latestReading?.weatherCondition} </h2>
             </div>
         </div>
         <div class="card ">
             <div class="extra">
 
-                <h2 class="ui header"> <span class="ui  blue text"> Latest Temperature </span><br><br>
+                <h2 class="ui header"> <span class="ui  blue text">Temperature </span>
+                    <span class="ui big red text" > <i class="temperature low icon"></i> </span><br>
                     ${latestReading?.temperature} C <br>
                     ${latestReading?.fah} F
                 </h2>
@@ -35,7 +39,8 @@
         </div>
         <div class="card ">
             <div class="extra">
-                <h2 class="ui header"> <span class="ui  blue text"> Wind</span></h2>
+                <h2 class="ui header"> <span class="ui  blue text"> Wind </span> <br>
+                 <span class="ui big red text" > <i class="wind icon"></i> </span></h2>
 
                 <h4 class=" ui header">${latestReading?.windInBeaufort} bft <br>
                     min wind speed : ${station?.minWindSpeed} <br>
@@ -46,7 +51,8 @@
         </div>
         <div class="card ">
             <div class = "extra">
-                <h2 class = "ui header"> <span class="ui  blue text"> Pressure </span> </h2>
+                <h2 class = "ui header"> <span class="ui  blue text"> Pressure </span> <br>
+                <span class="ui big red text" > <i class="angle double down icon"></i> </span></h2>
                 <h2 class = "ui header">${latestReading?.pressure} hpa</h2>
             <h4 class = "ui header"> min pressure : ${station?.minPressure} <br>
              max pressure :${station?.maxPressure} </h4>
