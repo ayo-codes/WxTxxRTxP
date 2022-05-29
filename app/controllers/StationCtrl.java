@@ -15,6 +15,7 @@ public class StationCtrl extends Controller
         Logger.info ("Station id = " + id);
         Reading latestReading = StationAnalytics.getLatestReading(station.readings);
         latestReading.fah = Reading.celsiusToFah(latestReading.temperature);
+        latestReading.weatherCondition =Reading.getWeatherCondition(latestReading.code);
         render("stations.html", station, latestReading);
     }
 
