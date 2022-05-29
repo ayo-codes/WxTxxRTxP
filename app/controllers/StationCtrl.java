@@ -21,12 +21,12 @@ public class StationCtrl extends Controller
         latestReading.windInBeaufort = Reading.windSpeedToBeaufort(latestReading.windSpeed);
         latestReading.compassWindDirection = Reading.convertToCompassDirection(latestReading.windDirection);
         latestReading.windChill = Reading.windChill(latestReading.temperature, latestReading.windSpeed);
-        station.minTemperature = station.getMinTemperature(station);
-        station.maxTemperature = station.getMaxTemperature(station);
-        station.maxWindSpeed = station.getMaxWindSpeed(station);
-        station.minWindSpeed = station.getMinWindSpeed(station);
-        station.minPressure = station.getMinPressure(station);
-        station.maxPressure = station.getMaxPressure(station);
+        station.minTemperature = Station.getMinTemperature(station);
+        station.maxTemperature = Station.getMaxTemperature(station);
+        station.maxWindSpeed = Station.getMaxWindSpeed(station);
+        station.minWindSpeed = Station.getMinWindSpeed(station);
+        station.minPressure = Station.getMinPressure(station);
+        station.maxPressure = Station.getMaxPressure(station);
         render("stations.html", station ,latestReading);
     }
 

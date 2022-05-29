@@ -4,27 +4,55 @@
 #{menu id:"dashboard"/}
 
 <section class="ui segment">
-    <h2 class="ui header">
-        ${station.stationName}
-    </h2>
-    <h4> latest reading code : ${latestReading?.code}</h4>
-    <h4> latest reading Weather Condition : ${latestReading?.weatherCondition}</h4>
-    <h4> latest reading temperature in Celsius : ${latestReading?.temperature}</h4>
-    <h4> latest reading temperature in Fahrenheit : ${latestReading?.fah}</h4>
-    <h4> min temperature : ${station?.minTemperature}</h4>
-    <h4> max temperature : ${station?.maxTemperature}</h4>
-    <h4> latest reading  WindSpeed: ${latestReading?.WindSpeed}</h4>
-    <h4> min wind speed : ${station?.minWindSpeed} </h4>
-    <h4> max wind speed : ${station?.maxWindSpeed}  </h4>
-    <h4> latest reading  Wind in Beaufort: ${latestReading?.windInBeaufort} bft </h4>
-    <h4> latest reading WindDirection : ${latestReading?.WindDirection}</h4>
-    <h4> latest reading  Compass WindDirection : ${latestReading?.compassWindDirection}</h4>
-    <h4> latest reading  Wind Chill : ${latestReading?.windChill}</h4>
-    <h4> latest reading pressure : ${latestReading?.pressure}</h4>
-    <h4> min pressure : ${station?.minPressure} </h4>
-    <h4> max pressure :${station?.maxPressure} </h4>
+    <div class="ui five stackable cards">
+        <div class="card">
+            <div class="extra">
+                <h2 class="ui header">
+                    <span class="ui blue text">${station.stationName}</span>
+                </h2>
+                <h4 class="ui header"> Longitude : ${station.stationLongitude}
+                    <br> Latitude : ${station.stationLatitude} </h4>
+            </div>
+        </div>
+        <div class="card ">
+            <div class="extra">
+                <h2 class="ui header">
+                <span class="ui  blue text">  Latest Weather Conditions</span></h2>
+                <h3 class="ui header"> ${latestReading?.weatherCondition} </h3>
+            </div>
+        </div>
+        <div class="card ">
+            <div class="extra">
 
+                <h2 class="ui header"> <span class="ui  blue text"> Latest Temperature </span><br><br>
+                    ${latestReading?.temperature} C <br>
+                    ${latestReading?.fah} F
+                </h2>
+                <h4 class="ui header">
+                    min: ${station?.minTemperature} C<br>
+                    max: ${station?.maxTemperature} C </h4>
+            </div>
+        </div>
+        <div class="card ">
+            <div class="extra">
+                <h2 class="ui header"> <span class="ui  blue text"> Wind</span></h2>
 
-   #{liststations station:station/}
+                <h4 class=" ui header">${latestReading?.windInBeaufort} bft <br>
+                    min wind speed : ${station?.minWindSpeed} <br>
+                    max wind speed : ${station?.maxWindSpeed}<br>
+                    ${latestReading?.compassWindDirection} <br>
+                    Feels like ${latestReading?.windChill}</h4>
+            </div>
+        </div>
+        <div class="card ">
+            <div class = "extra">
+                <h2 class = "ui header"> <span class="ui  blue text"> Pressure </span> </h2>
+                <h2 class = "ui header">${latestReading?.pressure} hpa</h2>
+            <h4 class = "ui header"> min pressure : ${station?.minPressure} <br>
+             max pressure :${station?.maxPressure} </h4>
+            </div>
+        </div>
+    </div>
+    #{liststations station:station/}
     #{addreading station:station/}
 </section>
