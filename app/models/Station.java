@@ -45,7 +45,9 @@ public class Station  extends Model {
                     minTemperature = reading;
                 }
             }
-        } return minTemperature.temperature;
+        } else { return 0;}
+
+        return minTemperature.temperature;
     }
 
     public static double getMaxTemperature(Station station) {
@@ -58,7 +60,7 @@ public class Station  extends Model {
                     maxTemperature = reading;
                 }
             }
-        }
+        }  else { return 0;}
         return maxTemperature.temperature;
     }
 
@@ -72,7 +74,7 @@ public class Station  extends Model {
                     maxWindSpeed = reading;
                 }
             }
-        }
+        } else { return 0;}
         return maxWindSpeed.windSpeed;
     }
 
@@ -86,7 +88,7 @@ public class Station  extends Model {
                     minWindSpeed = reading;
                 }
             }
-        }
+        } else { return 0;}
         return minWindSpeed.windSpeed;
     }
 
@@ -100,7 +102,7 @@ public class Station  extends Model {
                     minPressure = reading;
                 }
             }
-        }
+        } else { return 0;}
         return minPressure.pressure;
     }
 
@@ -114,7 +116,7 @@ public class Station  extends Model {
                     maxPressure = reading;
                 }
             }
-        }
+        } else { return 0;}
         return maxPressure.pressure;
     }
 }

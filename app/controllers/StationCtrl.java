@@ -9,10 +9,12 @@ import utils.StationAnalytics;
 
 public class StationCtrl extends Controller
 {
+
     public static void index(Long id)
     {
         Station station = Station.findById(id);
         Logger.info ("Station id = " + id);
+
         Reading latestReading = StationAnalytics.getLatestReading(station.readings);
         latestReading.fah = Reading.celsiusToFah(latestReading.temperature);
         latestReading.weatherCondition =Reading.getWeatherCondition(latestReading.code);
@@ -25,7 +27,7 @@ public class StationCtrl extends Controller
         station.minWindSpeed = station.getMinWindSpeed(station);
         station.minPressure = station.getMinPressure(station);
         station.maxPressure = station.getMaxPressure(station);
-        render("stations.html", station, latestReading);
+        render("stations.html", station ,latestReading);
     }
 
     public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection , float pressure)

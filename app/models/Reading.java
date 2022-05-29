@@ -7,12 +7,13 @@ import play.db.jpa.Model;
 @Entity
 public class Reading extends Model {
     public int code;
-    public float temperature;
+    public float temperature = 0;
+
     public float windSpeed;
     public float windDirection;
     public float pressure;
 
-    public double fah;
+    public double fah = 0;
     public String weatherCondition;
 
     public int windInBeaufort;

@@ -11,7 +11,9 @@ public class StationAnalytics {
             Reading latestReadings = readings.get(lastIndex);
             System.out.println(latestReadings);
             return latestReadings;
-        } else
-            return null;
+        } else {Reading latestReadings = new Reading(0,0,0,0,0);
+            return latestReadings;
+
+        }
     }
 }
