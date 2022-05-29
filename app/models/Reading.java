@@ -4,6 +4,7 @@ import java.lang.Math;
 
 import play.db.jpa.Model;
 
+//manages reading inputs , constructors , calculations
 @Entity
 public class Reading extends Model {
     public int code;
@@ -34,12 +35,12 @@ public class Reading extends Model {
         this.windChill = windChill;
 
     }
-
+//converts celsius to fahrenheit
     public static double celsiusToFah(float temperature) {
         double convertedTemp = (temperature * 9.0 / 5.0 + 32.0);
         return convertedTemp;
     }
-
+//converts weather codes to string descriptions
     public static String getWeatherCondition(int code) {
         String weatherCondition = null;
         switch (code) {
@@ -76,7 +77,7 @@ public class Reading extends Model {
         }
         return weatherCondition;
     }
-
+    //converts windspeed into beaufort scale
     public static int windSpeedToBeaufort(float windSpeed) {
         if (windSpeed <= 1) {
             return 0;
@@ -104,6 +105,7 @@ public class Reading extends Model {
             return 11;
     }
 
+    //converts wind directions to compass directions
     public static String convertToCompassDirection(float windDirection) {
         String latestWindDirection = null;
 
@@ -145,6 +147,7 @@ public class Reading extends Model {
         return latestWindDirection;
     }
 
+    //converts windspeed to windchill effect
     public static double windChill(float temperature, float windSpeed) {
         double a = Math.pow(windSpeed, 0.16);
         double result = 13.12 + (0.6215 * temperature) - (11.37 * a) + (0.3965 * temperature * a);
