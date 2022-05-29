@@ -16,6 +16,15 @@ public class StationCtrl extends Controller
         Reading latestReading = StationAnalytics.getLatestReading(station.readings);
         latestReading.fah = Reading.celsiusToFah(latestReading.temperature);
         latestReading.weatherCondition =Reading.getWeatherCondition(latestReading.code);
+        latestReading.windInBeaufort = Reading.windSpeedToBeaufort(latestReading.windSpeed);
+        latestReading.compassWindDirection = Reading.convertToCompassDirection(latestReading.windDirection);
+        latestReading.windChill = Reading.windChill(latestReading.temperature, latestReading.windSpeed);
+        station.minTemperature = station.getMinTemperature(station);
+        station.maxTemperature = station.getMaxTemperature(station);
+        station.maxWindSpeed = station.getMaxWindSpeed(station);
+        station.minWindSpeed = station.getMinWindSpeed(station);
+        station.minPressure = station.getMinPressure(station);
+        station.maxPressure = station.getMaxPressure(station);
         render("stations.html", station, latestReading);
     }
 
