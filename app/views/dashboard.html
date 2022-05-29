@@ -6,12 +6,15 @@
 #{list items:stations, as:'station'}
 
 <section class="ui segment">
-  <h2 class = "ui header">
-    ${station.stationName}
+  <h2 class = "ui header" ><span class="ui  blue text">
+    ${station.stationName}</span>
   </h2>
  <!--#{liststations station:station/} -->
-<p>See Full weather below</p>
-  <a href="/station/${station.id}"> View </a>
+<h4>See full weather information for this station by clicking the View button</h4>
+  <a href="/station/${station.id}" class="ui large blue button"> View </a>
+  <br>
+  <br>
+  <a href="/station/${station.id}/deletereading/" class="ui tiny red button"> Delete Station</a>
 
 </section>
 #{/list}
